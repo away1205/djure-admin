@@ -26,8 +26,8 @@ function AuthenticationTitle({ onLogin, isLoading, error }: AuthProp) {
 
   const loginForm = useForm({
     initialValues: {
-      email: 'korps328@gmail.com',
-      password: '@korps123',
+      email: '',
+      password: '',
     },
 
     validate: {

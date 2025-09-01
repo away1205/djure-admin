@@ -12,7 +12,7 @@ import {
   Modal,
 } from '@mantine/core';
 import { IconEdit, IconPlus, IconTrash, IconEye } from '@tabler/icons-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getCompetitionByIdService } from '../../services/competitionService';
 import { getQuestionsByCompetitionService, deleteQuestionService } from '../../services/questionService';
 import { getParticipantsByCompetitionService, removeParticipantService } from '../../services/participantService';
@@ -141,6 +141,9 @@ export default function CompetitionViewDetail() {
         <Text mb="sm"><strong>Duration:</strong> {competition.duration_minutes} minutes</Text>
         <Text mb="sm"><strong>Total Questions:</strong> {questions.length}</Text>
         <Text mb="sm"><strong>Total Participants:</strong> {participants.length}</Text>
+        <Text mb="sm"><strong>Competition link: </strong> 
+            <Link to={`/public/competition/${competitionID}`} target='_blank'>{`${window.location.origin}/public/competition/${competitionID}`}</Link>
+        </Text>
       </Paper>
 
       <Tabs defaultValue="questions">
