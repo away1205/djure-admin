@@ -5,7 +5,7 @@ A comprehensive admin interface for managing cerdas cermat (quiz) competitions b
 ## Features
 
 - **Competition Management**: Create and manage quiz competitions with custom settings
-- **Question Management**: Add, edit, and organize questions for each competition
+- **Question Management**: Add, edit, and organize open-ended questions for each competition
 - **Participant Management**: Register participants with unique auth keys for access
 - **Answer Tracking**: Monitor participant responses and competition progress
 - **Admin Dashboard**: Full CRUD operations through an intuitive web interface
@@ -84,6 +84,20 @@ src/
 ## Key Components
 
 - **Competition Management**: Full CRUD for competitions with form validation
-- **Question Editor**: Rich text editing for questions and multiple choice options
+- **Question Editor**: Rich text editing for open-ended questions
 - **Participant Registration**: Generate unique auth keys for participant access
 - **Answer Tracking**: Real-time monitoring of participant progress and scores
+
+## For Participants
+
+Participants can join competitions through the public interface:
+
+1. **Access Competition**: Visit `/public/competition/{competitionID}`
+2. **Login**: Enter your auth key provided by the administrator
+3. **Take Quiz**: Answer questions in the competition interface
+4. **Submit Answers**: Your answers are automatically saved and scored
+
+### Participant Routes
+- `/public/competition/:id` - Competition landing page
+- `/public/competition/:id/login` - Participant login
+- `/public/competition/:id/quiz` - Competition quiz interface

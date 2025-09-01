@@ -18,6 +18,9 @@ import QuestionForm from './features/Competition/Questions/QuestionForm';
 import QuestionViewDetail from './features/Competition/Questions/QuestionViewDetail';
 import ParticipantForm from './features/Competition/Participants/ParticipantForm';
 import ParticipantViewDetail from './features/Competition/Participants/ParticipantViewDetail';
+import ParticipantLogin from './features/Public/ParticipantLogin';
+import ParticipantCompetition from './features/Public/ParticipantCompetition';
+import CompetitionAccess from './features/Public/CompetitionAccess';
 
 function App() {
   return (
@@ -79,7 +82,16 @@ function App() {
             <Route path='form'>
               <Route path='member' element={<MemberForm />} />
             </Route>
+
+            <Route path='competition'>
+              <Route path=':competitionID'>
+                <Route index element={<CompetitionAccess />} />
+                <Route path='login' element={<ParticipantLogin />} />
+                <Route path='quiz' element={<ParticipantCompetition />} />
+              </Route>
+            </Route>
           </Route>
+
           <Route path='*' element={<p>Testing</p>} />
         </Routes>
       </BrowserRouter>

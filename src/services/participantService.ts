@@ -71,6 +71,22 @@ export async function getParticipantByIdService(participantId: number) {
   return data;
 }
 
+export async function getParticipantByAuthKeyService(authKey: string, competitionId: number) {
+  const { data, error } = await supabase
+    .from(participantTable)
+    .select('*')
+    .eq('auth_key', authKey)
+    .eq('competition_id', competitionId)
+    .single();
+
+  if (error) {
+    console.log(error);
+    return null;
+  }
+
+  return data;
+}
+
 export async function addParticipantService(newParticipant: CompetitionParticipantType) {
   const { data, error } = await supabase
     .from(participantTable)
@@ -90,6 +106,21 @@ export async function removeParticipantService(participantID: number) {
     .from(participantTable)
     .delete()
     .eq('id', participantID);
+
+  if (error) {
+    console.log(error);
+    return error;
+  }
+
+  return data;
+}
+
+export async function updateParticipantService(participantID: number, updates: Partial<CompetitionParticipantType>) {
+  const { data, error } = await supabase
+    .from(participantTable)
+    .update(updates)
+    .eq('id', participantID)
+    .select();
 
   if (error) {
     console.log(error);
