@@ -1,30 +1,89 @@
-# React + TypeScript + Vite
+# Djure Admin - Competition Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive admin interface for managing cerdas cermat (quiz) competitions built with React, TypeScript, and Supabase.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Competition Management**: Create and manage quiz competitions with custom settings
+- **Question Management**: Add, edit, and organize questions for each competition
+- **Participant Management**: Register participants with unique auth keys for access
+- **Answer Tracking**: Monitor participant responses and competition progress
+- **Admin Dashboard**: Full CRUD operations through an intuitive web interface
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React 18 with TypeScript
+- **UI Library**: Mantine UI components
+- **Database**: Supabase (PostgreSQL)
+- **Build Tool**: Vite
+- **Routing**: React Router
+- **State Management**: Zustand
 
-- Configure the top-level `parserOptions` property like this:
+## Database Schema
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+The system uses the following tables:
+
+1. **competitions** - Main competition details (name, description, duration_minutes)
+2. **competitions_questions** - Questions for each competition
+3. **competitions_participants** - Stores participant details (name, auth_key) for each competition
+4. **competitions_answers** - Participant responses and scoring
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Configure Supabase connection in `src/services/supabase.js`
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Project Structure
+
+```
+src/
+├── features/
+│   ├── Authentication/
+│   ├── Competition/
+│   │   ├── components/
+│   │   ├── CompetitionForm.tsx
+│   │   ├── CompetitionNav.tsx
+│   │   └── CompetitionView.tsx
+│   ├── Dashboard/
+│   ├── Member/
+│   └── Transaction/
+├── services/
+│   ├── authService.ts
+│   ├── competitionService.ts
+│   ├── memberService.ts
+│   ├── participantService.ts
+│   ├── questionService.ts
+│   ├── answerService.ts
+│   └── supabase.js
+├── shared/
+│   ├── CompetitionType.ts
+│   ├── MemberType.ts
+│   └── TransactionType.ts
+├── UI/
+│   ├── StatsCard.tsx
+│   └── StatsCard.module.css
+└── utils/
+    ├── linkContainString.ts
+    └── transactionFilter.ts
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Key Components
+
+- **Competition Management**: Full CRUD for competitions with form validation
+- **Question Editor**: Rich text editing for questions and multiple choice options
+- **Participant Registration**: Generate unique auth keys for participant access
+- **Answer Tracking**: Real-time monitoring of participant progress and scores

@@ -19,6 +19,7 @@ import {
   IconLogout,
   IconSwitchHorizontal,
   IconCash,
+  IconTrophy,
 } from '@tabler/icons-react';
 import classes from './Navbar.module.css';
 import { useMediaQuery } from '@mantine/hooks';
@@ -59,6 +60,7 @@ const mockdata = [
   // { icon: IconGauge, label: 'Dashboard', link: 'dashboard' },
   { icon: IconCash, label: 'Transaction', link: 'transaction' },
   { icon: IconUserPlus, label: 'Member', link: 'member' },
+  { icon: IconTrophy, label: 'Competition', link: 'competition' },
   // { icon: IconSettings, label: 'Settings', link: 'settings' },
   // { icon: IconDeviceDesktopAnalytics, label: 'Analytics' },
   // { icon: IconCalendarStats, label: 'Releases' },
