@@ -10,7 +10,7 @@ import {
   Alert,
 } from '@mantine/core';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getParticipantByAuthKeyService } from '../../services/participantService';
+import { getParticipantByAuthKeyService, updateParticipantService } from '../../services/participantService';
 
 export default function ParticipantLogin() {
   const [authKey, setAuthKey] = useState('');
@@ -36,6 +36,17 @@ export default function ParticipantLogin() {
         sessionStorage.setItem('participant', JSON.stringify(participant));
         sessionStorage.setItem('competitionId', competitionID || '');
 
+        try {
+          // Invalidate the auth key to prevent reuse
+          if (participant?.id) {
+            await updateParticipantService(participant.id, {
+              auth_key: `invalidated_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+            });
+          }
+        } catch (error) {
+          console.error('Error invalidating auth key:', error);
+        }
+        
         // Navigate to the competition interface
         navigate(`/public/competition/${competitionID}/quiz`);
       } else {
